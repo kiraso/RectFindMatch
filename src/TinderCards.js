@@ -1,29 +1,46 @@
-import { SwipeableDrawer } from '@material-ui/core'
+
 import React,{useState} from 'react'
+import TinderCard from 'react-tinder-card'
 import "./TinderCards.css"
 function TinderCards() {
     const [people, setPeople] = useState([
         {
-            name: "Elon musk",
-            url:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.biography.com%2Fbusiness-figure%2Felon-musk&psig=AOvVaw1Aovh-cu2QVCfnkMFXqktW&ust=1604999186740000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiMqYKO9ewCFQAAAAAdAAAAABAM"
+            name: "Irene",
+            url:"https://i.pinimg.com/originals/35/d3/ef/35d3ef8311e88ea0e75038ca895e18fb.jpg"
         },  
         {
-            name: "Jeff Bezoz",
-            url:"https://www.google.com/url?sa=i&url=https%3A%2F%2Ffortune.com%2F2020%2F02%2F05%2Fjeff-bezos-amazon-stock-net-worth-2%2F&psig=AOvVaw1Ra5BWTJc89-cyxIuvZaWb&ust=1604999716763000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIiJ5f-P9ewCFQAAAAAdAAAAABAD"
+            name: "Sunmi",
+            url:"https://i.pinimg.com/originals/70/16/d3/7016d31990510295c9339e87996f8cc4.jpg"
         }
     ])
+
+    const swiped = (direction,nameToDelete) => {
+        console.log("removing: " + nameToDelete)
+    }
+
+    const outOfFrame = (name) => {
+        console.log(name + " left the screen!")
+    }
     return (
         <div className="tinderCards">
-            <div className="tinderCard__cardContainer">
+            <div className="tinderCards_cardContainer">
                 {people.map((person) => (
                     <TinderCard
                     className="swipe"
                     key={CharacterData.name}
                     preventSwipe={"up","down"}
-                    onSwipe={ (div) => swiped(dir,character.name) }
-                    onCardLeftScreen = {() => outOfFrame(character.name)}>
-                      
+                    onSwipe={ (dir) => swiped(dir,person.name) }
+                    onCardLeftScreen = {() => outOfFrame(person.name)}>
+                    <div
+                        style={{ backgroundImage: `url(${person.url})`}}
+                        className="card"
+                    >
+                        
+                <h3>{person.name}</h3>
+                    </div>
                     </TinderCard>
+
+                    
                 ))}
             </div>
 
